@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Category details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngIf="category; else loading">
+        <ion-item>
+            <ion-label>Category Id</ion-label>
+            <ion-label class="ion-text-center ion-text-wrap" slot="end">{{category?.id}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Category Name</ion-label>
+            <ion-label class="ion-text-center ion-text-wrap" slot="end">{{category?.categoryName}}</ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="category.parentId">
+            <ion-label>Parent Category</ion-label>
+            <ion-label *ngIf="parentCategory; else parentLoading" class="ion-text-center ion-text-wrap" slot="end"
+                       [textContent]="parentCategory.categoryName"></ion-label>
+        </ion-item>
+    </ion-list>
+    <ng-template #loading>
+        <ion-progress-bar color="primary" type="indeterminate"></ion-progress-bar>
+    </ng-template>
+    <ng-template #parentLoading>
+        <ion-spinner class="ion-text-center"></ion-spinner>
+    </ng-template>
+</ion-content>
