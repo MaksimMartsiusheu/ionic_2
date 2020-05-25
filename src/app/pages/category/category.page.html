@@ -21,7 +21,7 @@
 
         <ion-item *ngIf="category.parentId">
             <ion-label>Parent Category</ion-label>
-            <ion-label *ngIf="parentCategory; else parentLoading" class="ion-text-center ion-text-wrap" slot="end"
+            <ion-label [routerLink]="'/categories/'+parentCategory.id" *ngIf="parentCategory; else parentLoading" class="ion-text-center ion-text-wrap" slot="end"
                        [textContent]="parentCategory.categoryName"></ion-label>
         </ion-item>
     </ion-list>
