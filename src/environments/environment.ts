@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiCategoryUrl: 'https://an-market.herokuapp.com/categories',
-  apiProductUrl: 'https://an-market.herokuapp.com/products'
+  apiProductUrl: 'https://an-market.herokuapp.com/products',
+  cacheTtlInSec: 60 * 60
 };
 
 /*

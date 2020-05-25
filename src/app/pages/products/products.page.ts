@@ -18,5 +18,4 @@ export class ProductsPage implements OnInit {
     ngOnInit() {
         this.products = this.productService.getAllProducts();
     }
-
 }

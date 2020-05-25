@@ -18,5 +18,4 @@ export class CategoriesPage implements OnInit {
     ngOnInit() {
         this.categories = this.categoryService.getAllCategories();
     }
-
 }

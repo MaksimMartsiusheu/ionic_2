@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {CacheService} from 'ionic-cache';
 
 @Component({
     selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private platform: Platform,
+        private cache: CacheService,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar
     ) {
@@ -34,6 +36,8 @@ export class AppComponent implements OnInit {
 
     initializeApp() {
         this.platform.ready().then(() => {
+            this.cache.setDefaultTTL(60 * 60);
+            this.cache.setOfflineInvalidate(false);
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });

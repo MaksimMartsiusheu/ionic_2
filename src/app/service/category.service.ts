@@ -3,20 +3,24 @@ import {HttpClient} from '@angular/common/http';
 import {Category} from '../model/category';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {CacheService} from 'ionic-cache';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CategoryService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private cache: CacheService) {
     }
 
     getAllCategories(): Observable<Category[]> {
-        return this.http.get<Category[]>(environment.apiCategoryUrl);
+        return this.cache.loadFromObservable(environment.apiCategoryUrl,
+            this.http.get<Category[]>(environment.apiCategoryUrl));
     }
 
     getCategoryById(id): Observable<Category> {
-        return this.http.get<Category>(`${environment.apiCategoryUrl}/${id}`);
+        return this.cache.loadFromObservable(`category-${id}`,
+            this.http.get<Category>(`${environment.apiCategoryUrl}/${id}`));
     }
 }
